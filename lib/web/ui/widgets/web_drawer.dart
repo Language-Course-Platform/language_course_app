@@ -25,39 +25,45 @@ class _WebDrawerState extends State<WebDrawer> {
                   // decoration: const BoxDecoration(
                   //   color: Colors.transparent,
                   // ),
-                  child: SizedBox(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: Image.asset(
-                            "./assets/avatar.png",
-                          ).image,
-                          radius: 20,
-                          backgroundColor: Colors.red,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Fernando Sinigaglia",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: InkWell(
+                      onTap: () {},
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: Image.asset(
+                                "./assets/avatar.png",
+                              ).image,
+                              radius: 20,
+                              backgroundColor: Colors.red,
                             ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "Fernando Sinigaglia",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
                 ListTile(
                   leading: const Icon(
-                    Icons.person,
+                    Icons.edit,
                     color: Colors.white,
                   ),
                   horizontalTitleGap: 0,
