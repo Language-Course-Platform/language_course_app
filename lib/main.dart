@@ -1,9 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:language_call_app/web/providers/login.dart';
 import 'package:language_call_app/web/providers/register.dart';
-import 'package:language_call_app/web/ui/screens/auth/login/web_login.dart';
 import 'package:language_call_app/web/ui/screens/home/web_home_screen.dart';
+import 'package:language_call_app/web/ui/screens/landing/web_landing.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
@@ -17,10 +19,10 @@ Future<void> main() async {
 }
 
 void initDefaultConfig() {
-  QR.settings.enableDebugLog = false;
-  QR.settings.enableLog = false;
+  QR.settings.enableDebugLog = true;
+  QR.settings.enableLog = true;
   QR.setUrlStrategy();
-  QR.settings.iniPage = const WebHomeScreen();
+  QR.settings.iniPage = const WebLanding();
   QR.settings.notFoundPage = QRoute(
       path: "/error",
       name: "error",

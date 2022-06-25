@@ -3,6 +3,8 @@ import 'package:language_call_app/web/ui/screens/auth/forgot_password/web_forgot
 import 'package:language_call_app/web/ui/screens/auth/login/web_login.dart';
 import 'package:language_call_app/web/ui/screens/auth/register/web_register.dart';
 import 'package:language_call_app/web/ui/screens/landing/web_landing.dart';
+import 'package:language_call_app/web/ui/screens/profile/edit/web_edit_profile.dart';
+import 'package:language_call_app/web/ui/screens/profile/view/web_profile.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 import '../models/User.dart';
 import '../ui/screens/home/web_home_screen.dart';
@@ -26,7 +28,7 @@ class WebRoutes {
               });
             },
           ) */
-          // AuthMiddleware()
+          AuthMiddleware()
         ]),
     QRoute(
       path: "/home",
@@ -80,6 +82,37 @@ class WebRoutes {
         // reverseTransitionDurationMilliseconds: 1000,
       ),
     ),
+    QRoute.withChild(
+      path: "/profile",
+      builderChild: (r) => const WebProfile(),
+      pageType: const QFadePage(
+        opaque: true,
+        transitionDurationMilliseconds: 1000,
+        // reverseTransitionDurationMilliseconds: 1000,
+      ),
+      children: [
+        QRoute(
+          path: "/:id",
+          name: "ProfileEdit",
+          builder: () => const WebProfile(),
+          pageType: const QFadePage(
+            opaque: true,
+            transitionDurationMilliseconds: 1000,
+            // reverseTransitionDurationMilliseconds: 1000,
+          ),
+        ),
+        QRoute(
+          path: "/edit/:id",
+          name: "ProfileEdit",
+          builder: () => const WebEditProfile(),
+          pageType: const QFadePage(
+            opaque: true,
+            transitionDurationMilliseconds: 1000,
+            // reverseTransitionDurationMilliseconds: 1000,
+          ),
+        ),
+      ],
+    ),
   ];
 }
 
@@ -91,5 +124,5 @@ class AuthMiddleware extends QMiddleware {
   Future<bool> canPop() async => await fetchUser() == null;
   @override
   Future<String?> redirectGuard(String path) async =>
-      await fetchUser() == null ? "/" : '/home';
+      await fetchUser() == null ? null : '/home';
 }

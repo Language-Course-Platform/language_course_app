@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:language_call_app/main.dart';
 import 'package:language_call_app/web/ui/widgets/web_app_bar.dart';
 import 'package:language_call_app/web/ui/widgets/web_drawer.dart';
 

@@ -10,6 +10,6 @@ class WebSettings extends StatefulWidget {
 class _WebSettingsState extends State<WebSettings> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

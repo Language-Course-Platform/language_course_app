@@ -1,54 +1,65 @@
-import 'package:idb_shim/idb.dart';
-import 'package:idb_shim/idb_browser.dart';
+/* import 'package:sqflite/sqflite.dart' as sqflite;
+import 'package:idb_sqflite/idb_sqflite.dart' as idb_sqflite;
 
 class DB {
   //abrindo o banco de dados local
   static const _storeName = "data";
 
-  static Future<Database> open() async {
-    IdbFactory? idbFactory = getIdbFactory();
-    Database database = await idbFactory!.open("db", version: 1,
-        onUpgradeNeeded: (VersionChangeEvent event) async {
-      Database db = event.database;
+  static Future<idb_sqflite.Database> open() async {
+    var factory = idb_sqflite.getIdbFactorySqflite(sqflite.databaseFactory);
+
+    // String path = join(databasePath, 'befree.db');
+    idb_sqflite.Database database = await factory.open("myhero.db", version: 1,
+        onUpgradeNeeded: (idb_sqflite.VersionChangeEvent event) async {
+      idb_sqflite.Database db = event.database;
 
       db.createObjectStore(_storeName, autoIncrement: true);
     });
     return database;
   }
 
+  /*  static Future<void> save(String jsonData, String key) async {
+    var db = await open();
+    await db.delete('Configuration',
+        where: 'configName =?', whereArgs: [key.toLowerCase()]);
+
+    await db.insert(
+      'Configuration',
+      {'configName': key.toLowerCase(), 'configValue': jsonData},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  } */
+
   static Future<void> save(String jsonData, String key) async {
     var db = await open();
-    var transaction = db.transaction(_storeName, idbModeReadWrite);
+    var transaction = db.transaction(_storeName, idb_sqflite.idbModeReadWrite);
     var store = transaction.objectStore(_storeName);
     var object = await store.put({key: jsonData});
-
     await transaction.completed;
     db.close();
   }
 
   static Future<dynamic>? getByKey(String key) async {
     var db = await open();
-
-    var txn = db.transaction(_storeName, idbModeReadOnly);
-    var store = txn.objectStore(_storeName);
+    const storeName = "data";
+    var txn = db.transaction(storeName, idb_sqflite.idbModeReadOnly);
+    var store = txn.objectStore(storeName);
     var value = await store.getObject(key);
     await txn.completed;
 
     return value;
   }
 
-  static Future<void> delete(String key) async {
+  static Future<void> delete(String storeName) async {
     final db = await open();
-    var txn = db.transaction(_storeName, idbModeReadOnly);
-    var store = txn.objectStore(_storeName);
-    await store.delete(key);
-
+/*     await db.delete('Configuration',
+        where: 'configName =?', whereArgs: [key.toLowerCase()]); */
+    db.deleteObjectStore(storeName);
     db.close();
   }
 
   static Future<void> deleteAllData() async {
     final db = await open();
-    db.deleteObjectStore(_storeName);
     db.factory.deleteDatabase("myhero.db");
     db.close();
   }
@@ -148,3 +159,4 @@ class DB {
   }
 } */
 
+ */

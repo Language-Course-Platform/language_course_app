@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 class DbMobile {
   static Future<Database> open() async {
     var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'futstat.db');
+    String path = join(databasesPath, 'app.db');
     Database database = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
       await db.execute("DROP TABLE IF EXISTS Configuration");
@@ -60,7 +60,7 @@ class DbMobile {
 
   static Future<void> hasCacheExpired() async {
     var cacheTime = await getByKey('cache');
-    DateTime currentTime = DateTime.now().add(Duration(hours: -1));
+    DateTime currentTime = DateTime.now().add(const Duration(hours: -1));
 
     if (cacheTime != null) {
       DateTime currentCacheTime = DateTime.parse(cacheTime);

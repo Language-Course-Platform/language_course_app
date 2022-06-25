@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class User {
-  User.fromJson(Map<String, dynamic> json) {}
+  User.fromJson(Map<String, dynamic> json);
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
