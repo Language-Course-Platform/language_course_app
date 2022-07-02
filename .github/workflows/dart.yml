@@ -64,13 +64,15 @@ jobs:
         run: flutter build web --web-renderer html --release 
 
       - name: Deploy
+        env:
+          SUPER_SECRET: ${{ env.secrets.token }}
         run: |
           cd build/web
           git init
           git config --global user.email sinigagliafernando@gmail.com
           git config --global user.name fernandosini
           git status
-          git remote add origin https://${{env.secrets.token}}@github.com/Language-Course-Platform/language_course_app.git
+          git remote add origin https://$SUPER_SECRET@github.com/Language-Course-Platform/language_course_app.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
