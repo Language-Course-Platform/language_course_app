@@ -1,16 +1,10 @@
-import 'dart:html';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:language_call_app/web/providers/login.dart';
 import 'package:language_call_app/web/providers/register.dart';
-import 'package:language_call_app/web/ui/screens/home/web_home_screen.dart';
-import 'package:language_call_app/web/ui/screens/landing/web_landing.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
-
 import 'web/routes/web_routes.dart';
-import 'web/ui/screens/error/web_error_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

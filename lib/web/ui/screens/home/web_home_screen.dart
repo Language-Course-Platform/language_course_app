@@ -196,7 +196,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: screenSize.height * 0.2,
               width: screenSize.width,
               child: Row(

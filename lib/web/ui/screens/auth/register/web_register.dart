@@ -1,7 +1,5 @@
-import 'dart:html';
-
+// ignore: avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/ui/widgets/web_responsive.dart';
@@ -227,7 +225,7 @@ class _WebRegisterState extends State<WebRegister> {
                           icon: Icon(!isObscure
                               ? Icons.visibility
                               : Icons.visibility_off),
-                          color: !isObscure ? Colors.white : Color(0xFF1A1A40),
+                          color: !isObscure ? Colors.white : const Color(0xFF1A1A40),
                           onPressed: () {
                             if (!isObscure) {
                               setState(() {
