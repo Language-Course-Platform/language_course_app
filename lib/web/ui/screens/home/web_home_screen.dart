@@ -19,7 +19,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       key: globalKey,
-      backgroundColor: const Color(0xff1A1A40),
+      //backgroundColor: const Color(0xff1A1A40),
       endDrawer: const WebDrawer(),
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -29,10 +29,22 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
           globalKey: globalKey,
         ),
       ),
-      body: SizedBox(
+      body: Container(
         height: screenSize.height,
         width: screenSize.width,
         //color: Colors.red,
+        decoration: const BoxDecoration(
+          //color: Color(0xff1A1A40),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.4, 1],
+            colors: [
+              Color(0xff1a1a40),
+              Colors.teal,
+            ],
+          ),
+        ),
         child: ListView(
           children: [
             const SizedBox(
@@ -153,6 +165,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                       bottom: 50,
                     ),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           height: screenSize.height * 0.6,
@@ -183,17 +196,19 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            Container(
               height: screenSize.height * 0.2,
               width: screenSize.width,
-              child: Row(children: const [
-                Text(
-                  "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                )
-              ]),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  ]),
             ),
           ],
         ),
