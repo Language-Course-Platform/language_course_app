@@ -70,7 +70,7 @@ jobs:
           git config --global user.email sinigagliafernando@gmail.com
           git config --global user.name fernandosini
           git status
-          git remote add origin https://${{secrets.token}}@github.com/Language-Course-Platform/language_course_app.git
+          git remote add origin https://${{env.secrets.token}}@github.com/Language-Course-Platform/language_course_app.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
