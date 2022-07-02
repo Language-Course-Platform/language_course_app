@@ -9,9 +9,9 @@ class AuthService extends DefaultService {
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
       } else {}
-
-      // ignore: empty_catches, unused_catch_clause
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      return Future.error("Sorry, we have problem with our servers: $e ");
+    }
   }
 
   Future<void> register(Map<dynamic, dynamic>? body) async {
@@ -25,7 +25,7 @@ class AuthService extends DefaultService {
 
       // ignore: empty_catches, unused_catch_clause
     } on Exception catch (e) {
-      return Future.error("ERRO");
+      return Future.error("Sorry, we have problem with our servers: $e");
     }
   }
 }

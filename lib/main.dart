@@ -14,29 +14,15 @@ import 'web/ui/screens/error/web_error_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initDefaultConfig();
   runApp(kIsWeb ? const MyAppWeb() : const MyApp());
-}
-
-void initDefaultConfig() {
-  QR.settings.enableDebugLog = true;
-  QR.settings.enableLog = true;
-  QR.setUrlStrategy();
-  QR.settings.iniPage = const WebLanding();
-  QR.settings.notFoundPage = QRoute(
-      path: "/error",
-      name: "error",
-      builder: () => const WebErrorScreen(),
-      pageType: const QFadePage(
-        transitionDurationMilliseconds: 1000,
-      ));
 }
 
 class MyAppWeb extends StatelessWidget {
   const MyAppWeb({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final routes = WebRoutes();
+    routes.initDefaultConfig();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -47,7 +33,7 @@ class MyAppWeb extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        routerDelegate: QRouterDelegate(WebRoutes().routes, withWebBar: true),
+        routerDelegate: QRouterDelegate(routes.routes),
         routeInformationParser: const QRouteInformationParser(),
         title: 'Ttile to define',
         debugShowCheckedModeBanner: false,

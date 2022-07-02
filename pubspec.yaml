@@ -28,7 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
-  flag: ^6.0.0
+  flag: ^5.0.1
   flutter:
     sdk: flutter
   flutter_webrtc: ^0.8.9
@@ -37,11 +37,10 @@ dependencies:
   google_fonts: ^3.0.1
   http: ^0.13.4
   idb_shim: ^2.0.1+1
-  idb_sqflite: ^1.1.0
   intl: ^0.17.0
   loading_indicator: ^3.1.0
   provider: ^6.0.3
-  qlevar_router: ^1.5.11
+  qlevar_router: ^1.6.0
   sqflite: ^2.0.2+1
 
 

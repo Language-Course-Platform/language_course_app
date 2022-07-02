@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:language_call_app/web/providers/login.dart';
+import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
+
+import '../../../widgets/web_responsive.dart';
 
 class WebLogin extends StatefulWidget {
   const WebLogin({Key? key}) : super(key: key);
@@ -15,16 +19,32 @@ class _WebLoginState extends State<WebLogin> {
   bool? isRemembered = false;
   bool? isHovered = false;
   bool? isSpanHovered = false;
+  bool isObscure = false;
+  List<FocusNode>? focusNodeList = List.generate(3, (index) => FocusNode());
+  FocusNode focusNode = FocusNode(canRequestFocus: true);
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+    final loginForm = Provider.of<Login>(context);
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: Container(
         height: screenSize.height,
         width: screenSize.width,
-        color: const Color(0xff1A1A40),
+        //  color: const Color(0xff1A1A40),
+        decoration: const BoxDecoration(
+          //color: Color(0xff1A1A40),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.4, 1],
+            colors: [
+              Color(0xff1a1a40),
+              Colors.teal,
+            ],
+          ),
+        ),
         child: ListView(
           //padding: const EdgeInsets.only(top: 40),
           children: [
@@ -32,125 +52,149 @@ class _WebLoginState extends State<WebLogin> {
               height: 100,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 300, right: 300),
-              height: screenSize.height * 0.67,
+              margin: EdgeInsets.only(
+                  left: WebResponsive.isLargeScreen(context) ? 300 : 150,
+                  right: WebResponsive.isLargeScreen(context) ? 300 : 150),
+              height: WebResponsive.isLargeScreen(context)
+                  ? screenSize.height * 0.67
+                  : screenSize.height * 0.73,
               width: screenSize.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white.withOpacity(0.2),
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Image.asset(
-                      isAntiAlias: true,
-                      "./assets/lock-transparent.png",
-                      height: 110,
-                      width: 150,
-                      fit: BoxFit.cover,
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.only(left: 150),
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset(
+                    isAntiAlias: true,
+                    "./assets/lock-transparent.png",
+                    height: 110,
+                    width: 150,
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.only(left: 150),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.only(top: 10, left: 150),
-                      child: const Text(
-                        "Login in your account to use our services",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white,
-                        ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    child: const Text(
+                      "Login in your account to use our services",
+                      textAlign: TextAlign.justify,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 150, right: 150),
-                      child: TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        controller: controllerUsernameOrEmail,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelStyle: const TextStyle(color: Colors.white),
-                          labelText: "Email or username",
-                          prefixIcon: Container(
-                            padding: const EdgeInsets.only(
-                              left: 5,
-                            ),
-                            child: const Icon(
-                              Icons.alternate_email,
-                              color: Colors.white,
-                            ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: controllerUsernameOrEmail,
+                      keyboardType: TextInputType.emailAddress,
+                      focusNode: focusNodeList?[0],
+                      decoration: InputDecoration(
+                        labelStyle: const TextStyle(color: Colors.white),
+                        labelText: "Email or username",
+                        prefixIcon: Container(
+                          padding: const EdgeInsets.only(
+                            left: 5,
                           ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
+                          child: const Icon(
+                            Icons.alternate_email,
+                            color: Colors.white,
                           ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
+                        ),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
                           ),
                         ),
                       ),
+                      onChanged: (value) => loginForm.setLoginInfo(value),
+                      onFieldSubmitted: (value) =>
+                          focusNodeList?[1].requestFocus(),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 150, right: 150),
-                      child: TextFormField(
-                        controller: controllerPassword,
-                        obscureText: true,
-                        keyboardType: TextInputType.visiblePassword,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          labelText: "Password",
-                          labelStyle: const TextStyle(color: Colors.white),
-                          prefixIcon: Container(
-                            padding: const EdgeInsets.only(
-                              left: 5,
-                            ),
-                            child: const Icon(
-                              FontAwesomeIcons.lock,
-                              color: Colors.white,
-                            ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    child: TextFormField(
+                      focusNode: focusNodeList?[1],
+                      controller: controllerPassword,
+                      obscureText: !isObscure,
+                      keyboardType: TextInputType.visiblePassword,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        labelStyle: const TextStyle(color: Colors.white),
+                        prefixIcon: Container(
+                          padding: const EdgeInsets.only(
+                            left: 5,
                           ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
+                          child: const Icon(
+                            FontAwesomeIcons.lock,
+                            color: Colors.white,
                           ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(!isObscure
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          color: !isObscure
+                              ? Colors.white
+                              : const Color(0xFF1A1A40),
+                          onPressed: () {
+                            if (!isObscure) {
+                              setState(() {
+                                isObscure = true;
+                              });
+                            } else {
+                              setState(() {
+                                isObscure = false;
+                              });
+                            }
+                          },
+                        ),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
                           ),
                         ),
                       ),
+                      onChanged: (value) => loginForm.setPassword(value),
+                      onFieldSubmitted: (value) =>
+                          focusNodeList?[2].requestFocus(),
                     ),
-                    Container(
-                      margin:
-                          const EdgeInsets.only(left: 145, top: 20, right: 150),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 145, right: 150),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        /* Row(
                             children: [
                               Checkbox(
                                 fillColor:
@@ -172,60 +216,67 @@ class _WebLoginState extends State<WebLogin> {
                                 ),
                               ),
                             ],
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Material(
-                            type: MaterialType.transparency,
-                            child: InkWell(
-                              onTap: () {
-                                QR.toName("ForgotPassword");
-                              },
-                              child: FocusableActionDetector(
-                                onShowHoverHighlight: (value) => setState(() {
-                                  isHovered = value;
-                                }),
-                                descendantsAreFocusable: true,
-                                enabled: true,
-                                child: Text(
-                                  "Forgot Password?",
-                                  style: TextStyle(
-                                    color: isHovered! && isHovered != null
-                                        ? Colors.blue
-                                        : Colors.white,
-                                    fontWeight: FontWeight.w300,
-                                  ),
+                          ), */
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Material(
+                          type: MaterialType.transparency,
+                          child: InkWell(
+                            onTap: () {
+                              QR.toName("ForgotPassword");
+                            },
+                            child: FocusableActionDetector(
+                              onShowHoverHighlight: (value) => setState(() {
+                                isHovered = value;
+                              }),
+                              child: Text(
+                                "Forgot Password?",
+                                style: TextStyle(
+                                  color: isHovered! && isHovered != null
+                                      ? Colors.blue
+                                      : Colors.white,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: screenSize.width,
-                      height: 50,
-                      margin:
-                          const EdgeInsets.only(left: 150, right: 150, top: 20),
-                      child: FocusableActionDetector(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                          ),
-                          child: const Text(
-                            "Sign in",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                          onPressed: () {},
                         ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: screenSize.width,
+                    height: 50,
+                    margin:
+                        const EdgeInsets.only(left: 150, right: 150, top: 20),
+                    child: FocusableActionDetector(
+                      /*  enabled: true,
+                        descendantsAreFocusable: true,
+                        autofocus: true, */
+                      //focusNode: focusNodeList?[2],
+                      //  onFocusChange: (value) => print(value),
+                      child: ElevatedButton(
+                        focusNode: focusNodeList?[2],
+                        style: ElevatedButton.styleFrom(
+                          onPrimary: Colors.transparent,
+                          primary: Colors.blue,
+                        ),
+                        child: const Text(
+                          "Sign in",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () {
+                          QR.to("/home");
+                          focusNodeList?[2].unfocus();
+                        },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Container(
@@ -245,9 +296,6 @@ class _WebLoginState extends State<WebLogin> {
                             onShowHoverHighlight: (value) => setState(() {
                               isSpanHovered = value;
                             }),
-                            descendantsAreFocusable: true,
-                            autofocus: true,
-                            enabled: true,
                             child: Text(
                               " Create Account!",
                               style: TextStyle(

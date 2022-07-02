@@ -29,6 +29,22 @@ class _WebErrorScreenState extends State<WebErrorScreen> {
       body: SizedBox(
         height: screenSize.height,
         width: screenSize.width,
+        child: ListView(
+          children: [
+            SizedBox(
+              height: screenSize.height,
+              width: screenSize.width,
+              child: const Text(
+                "error",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:language_call_app/web/services/auth_service.dart';
 
-class AuthController extends AuthService {
+class AuthController {
   /* older way 
     AuthService? _authService;
     AuthController({this.context}){
@@ -9,12 +9,18 @@ class AuthController extends AuthService {
     }
   final BuildContext? context;
    */
-
-  AuthController({this.context});
+  AuthService? _authService;
+  AuthController({this.context}) {
+    _authService = AuthService();
+  }
   final BuildContext? context;
 
-  @override
   Future<void> login(Map<dynamic, dynamic>? body) async {
-    await super.login(body);
+    await _authService?.login(body);
+  }
+
+  Future<void> register(Map<dynamic, dynamic>? body) async {
+    print(body);
+    await _authService?.register(body);
   }
 }

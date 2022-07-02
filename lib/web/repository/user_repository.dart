@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:language_call_app/web/data/db.dart';
 
-import '../models/User.dart';
+import '../models/user.dart';
 
 class UserRepository {
   Future<void> saveUser(String jsonData) async {

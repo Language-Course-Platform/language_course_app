@@ -11,7 +11,7 @@ class WebForgotPassword extends StatefulWidget {
 class _WebForgotPasswordState extends State<WebForgotPassword> {
   TextEditingController controllerEmail = TextEditingController();
   bool? isArrowBackHovered = false;
-
+  FocusNode? focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -66,7 +66,19 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
       body: Container(
         height: screenSize.height,
         width: screenSize.width,
-        color: const Color(0xff1A1A40),
+        // color: const Color(0xff1A1A40),
+        decoration: const BoxDecoration(
+          //color: Color(0xff1A1A40),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.4, 1],
+            colors: [
+              Color(0xff1a1a40),
+              Colors.teal,
+            ],
+          ),
+        ),
         child: ListView(
           //padding: const EdgeInsets.only(top: 40),
           children: [
@@ -154,6 +166,8 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
                             ),
                           ),
                         ),
+                        onChanged: (value) => {},
+                        onFieldSubmitted: (value) => focusNode?.requestFocus(),
                       ),
                     ),
                     const SizedBox(
@@ -166,6 +180,7 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
                           const EdgeInsets.only(left: 150, right: 150, top: 20),
                       child: FocusableActionDetector(
                         child: ElevatedButton(
+                          focusNode: focusNode,
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue,
                           ),
@@ -176,7 +191,9 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
                               color: Colors.white,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            focusNode?.unfocus();
+                          },
                         ),
                       ),
                     ),

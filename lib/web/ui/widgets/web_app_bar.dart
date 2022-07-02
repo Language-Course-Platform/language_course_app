@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:language_call_app/web/repository/user_repository.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
-import '../../models/User.dart';
+import '../../models/user.dart';
 
 class WebAppBar extends StatefulWidget {
   const WebAppBar({Key? key, required this.globalKey}) : super(key: key);
@@ -19,9 +19,16 @@ class _WebAppBarState extends State<WebAppBar> {
   @override
   void initState() {
     super.initState();
-    userRepository.read().then((value) => setState(() {
-          user = value;
-        }));
+    if (!mounted) {
+      userRepository.read().then((value) => setState(() {
+            user = value;
+          }));
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -31,42 +38,44 @@ class _WebAppBarState extends State<WebAppBar> {
       backgroundColor: const Color(0xff1A1A40),
       elevation: 0,
       toolbarHeight: 70,
-      title: Row(
-        children: [
-          const SizedBox(
-            width: 30,
-          ),
-          InkWell(
-            onTap: () => QR.to("/"),
-            child: const Center(
-              child: Text(
-                "Learn",
-                style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+      title: user == null
+          ? null
+          : Row(
+              children: [
+                const SizedBox(
+                  width: 30,
                 ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          InkWell(
-            onTap: () => QR.to("/"),
-            child: const Center(
-              child: Text(
-                "Talk",
-                style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+                InkWell(
+                  onTap: () => QR.to("/"),
+                  child: const Center(
+                    child: Text(
+                      "Learn",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () => QR.to("/"),
+                  child: const Center(
+                    child: Text(
+                      "Talk",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
       leadingWidth: 100,
       leading: Row(
         children: [
@@ -74,6 +83,8 @@ class _WebAppBarState extends State<WebAppBar> {
             width: 40,
           ),
           InkWell(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             onTap: () => QR.to("/"),
             child: const Center(
               child: Text(
@@ -93,6 +104,24 @@ class _WebAppBarState extends State<WebAppBar> {
               const SizedBox(
                 width: 10,
               ),
+              SizedBox(
+                child: InkWell(
+                  onTap: () {
+                    QR.navigator.push("/register");
+                  },
+                  child: const Center(
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
               SizedBox(
                 child: InkWell(
                   onTap: () {
