@@ -48,17 +48,17 @@ jobs:
       #- name: Run tests
         #run: flutter test
       
-      - run: flutter build apk 
-      - uses: actions/upload-artifact@v1
-        with:
-            name: release-apk
-            path: build/app/outputs/apk/release/app-release.apk
+      #- run: flutter build apk 
+      #- uses: actions/upload-artifact@v1
+      #  with:
+      #      name: release-apk
+      #      path: build/app/outputs/apk/release/app-release.apk
             
-      - run: flutter build ipa
-      - uses: actions/upload-artifact@v1
-        with:
-             name: release-ipa
-             path: build/ios/ipa/language_call_app.ipa
+      #- run: flutter build ipa
+      #- uses: actions/upload-artifact@v1
+      #  with:
+      #       name: release-ipa
+      #       path: build/ios/ipa/language_call_app.ipa
        
       - name: Build Web
         run: flutter build web --web-renderer html --release 
