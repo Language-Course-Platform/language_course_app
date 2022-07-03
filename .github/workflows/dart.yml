@@ -62,14 +62,14 @@ jobs:
        
       - name: Build Web
         run: flutter build web --web-renderer html --release 
-#
-      - name: Deploy
+      
       - uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
             token: '${{ secrets.TOKEN }}'
+      - name: Deploy
         #env:
          # SUPER_SECRET: ${{secrets.TOKEN}}
-      - run: |
+        run: |
           cd build/web
           git init
           git config --global user.email sinigagliafernando@gmail.com
