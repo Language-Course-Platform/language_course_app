@@ -133,19 +133,19 @@ class WebRoutes {
   ];
 
   void initDefaultConfig() {
-  QR.settings.enableDebugLog = false;
-  QR.settings.enableLog = false;
-  QR.setUrlStrategy();
-  QR.settings.initPage = const WebLanding();
-  QR.settings.oneRouteInstancePerStack = true;
-  QR.settings.notFoundPage = QRoute(
-      path: "/error",
-      name: "error",
-      builder: () => const WebErrorScreen(),
-      pageType: const QFadePage(
-        transitionDurationMilliseconds: 1000,
-      ));
-}
+    QR.settings.enableDebugLog = false;
+    QR.settings.enableLog = false;
+    //QR.setUrlStrategy();
+    QR.settings.initPage = const WebLanding();
+    QR.settings.oneRouteInstancePerStack = true;
+    QR.settings.notFoundPage = QRoute(
+        path: "/error",
+        name: "error",
+        builder: () => const WebErrorScreen(),
+        pageType: const QFadePage(
+          transitionDurationMilliseconds: 1000,
+        ));
+  }
 }
 
 class AuthMiddleware extends QMiddleware {
