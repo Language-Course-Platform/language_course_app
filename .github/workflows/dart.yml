@@ -33,6 +33,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
            java-version: '12.x'
+           
+      - name: Cleaning Build
+        run: | 
+            cd build
+            rm -rf web
 
       - name: Cleaning project
         run: flutter clean
