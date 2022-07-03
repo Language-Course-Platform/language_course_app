@@ -65,7 +65,7 @@ jobs:
       
       - uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
-            token: '${{ secrets.TOKEN }}'
+            token: '${{ secrets.GITHUB_TOKEN }}'
       - name: Deploy
         #env:
          # SUPER_SECRET: ${{secrets.TOKEN}}
