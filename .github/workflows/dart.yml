@@ -34,6 +34,9 @@ jobs:
         with:
            java-version: '12.x'
 
+      - name: Cleaning project
+        run: flutter clean
+        
       - name: Install dependencies
         run: flutter pub get
 
