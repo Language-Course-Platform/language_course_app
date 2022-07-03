@@ -71,9 +71,9 @@ jobs:
           git init
           git config --global user.email sinigagliafernando@gmail.com
           git config --global user.name fernandosini
+          git remote add origin https://github.com/fernandosini/language_course_app.git
           git status
           git checkout -b gh-pages
           git add .
           git commit -m "update"
-          git remote set-url origin git@github.com:Language-Course-Platform/language_course_app.git
           git push origin gh-pages -f
