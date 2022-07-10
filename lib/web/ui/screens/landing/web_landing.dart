@@ -1,5 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:language_call_app/web/models/user.dart';
+import 'package:language_call_app/web/repository/user_repository.dart';
+import 'package:language_call_app/web/ui/widgets/web_responsive.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
 import '../../widgets/web_app_bar.dart';
@@ -14,13 +16,27 @@ class WebLanding extends StatefulWidget {
 
 class _WebLandingState extends State<WebLanding> {
   final globalKey = GlobalKey<ScaffoldState>();
+  UserRepository? userRepository = UserRepository();
+  User? user;
+  @override
+  void initState() {
+    super.initState();
+    if (!mounted) {
+      userRepository!.read().then(
+            (value) => setState(
+              () => user = value,
+            ),
+          );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       key: globalKey,
       //backgroundColor: const Color(0xff1A1A40),
-      endDrawer: const WebDrawer(),
+      endDrawer: user != null ? const WebDrawer() : null,
       extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
@@ -59,54 +75,154 @@ class _WebLandingState extends State<WebLanding> {
                     ],
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "A new way to learning a new language",
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "A new way to learning a new language",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    SizedBox(
-                      height: 55,
-                      width: 250,
-                      child: ElevatedButton(
-                        onPressed: () => QR.to("/register"),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                          ),
+                child: WebResponsive.isSmallScreen(context)
+                    ? SingleChildScrollView(
+                        child: Wrap(
+                          runAlignment: WrapAlignment.spaceBetween,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Container(
+                              height: screenSize.height,
+                              width: screenSize.width,
+                              padding: const EdgeInsets.only(top: 100),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "A new way to learning a new language",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  const Text(
+                                    "A new way to learning a new language",
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 50,
+                                  ),
+                                  SizedBox(
+                                    height: 55,
+                                    width: 250,
+                                    child: ElevatedButton(
+                                      onPressed: () => QR.to("/register"),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(40),
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        "Get Started!",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(right: 50),
+                              child: Image.asset(
+                                "./assets/video_call.png",
+                                height: 500,
+                                width: 500,
+                              ),
+                            )
+                          ],
                         ),
-                        child: const Text(
-                          "Get Started!",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
+                      )
+                    : Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Container(
+                            height: screenSize.height,
+                            width: WebResponsive.isLargeScreen(context)
+                                ? screenSize.width * 0.5
+                                : screenSize.width * 0.4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "A new way to learning a new language",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 50,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                const Text(
+                                  "A new way to learning a new language",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 50,
+                                ),
+                                SizedBox(
+                                  height: 55,
+                                  width: 250,
+                                  child: ElevatedButton(
+                                    onPressed: () => QR.to("/register"),
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      "Get Started!",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                right: WebResponsive.isMediumScreen(context)
+                                    ? 20
+                                    : 50),
+                            child: Image.asset(
+                              "./assets/video_call.png",
+                              height: WebResponsive.isMediumScreen(context)
+                                  ? 400
+                                  : 500,
+                              width: WebResponsive.isMediumScreen(context)
+                                  ? 400
+                                  : 500,
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
               ),
             ),
             /* Container(

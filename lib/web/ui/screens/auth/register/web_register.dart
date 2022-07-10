@@ -29,6 +29,8 @@ class _WebRegisterState extends State<WebRegister> {
   AuthController? authController;
   bool enterIspressed = false;
   List<FocusNode>? focusNodes;
+
+  
   @override
   void initState() {
     super.initState();
@@ -225,7 +227,9 @@ class _WebRegisterState extends State<WebRegister> {
                           icon: Icon(!isObscure
                               ? Icons.visibility
                               : Icons.visibility_off),
-                          color: !isObscure ? Colors.white : const Color(0xFF1A1A40),
+                          color: !isObscure
+                              ? Colors.white
+                              : const Color(0xFF1A1A40),
                           onPressed: () {
                             if (!isObscure) {
                               setState(() {
@@ -346,19 +350,10 @@ class _WebRegisterState extends State<WebRegister> {
                             onPressed: valueTerms != null && !valueTerms
                                 ? null
                                 : () {
-                                    QR.to("/home");
-                                    /* authController?.register({
-                                      "username": registerForm.username,
-                                      "password": registerForm.password,
-                                      "email": registerForm.password,
-                                    }); */
+                                    authController
+                                        ?.register(registerForm.toJson());
                                     focusNodes![3].unfocus();
                                   },
-                            /* () => authController?.register({
-                                        "username": registerForm.username,
-                                        "password": registerForm.password,
-                                        "email": registerForm.password,
-                                      }), */
                             child: const Text(
                               "Register",
                               style: TextStyle(

@@ -271,7 +271,7 @@ class _WebEditProfileState extends State<WebEditProfile> {
                         width: screenSize.width * 0.425,
                         child: TextFormField(
                           validator: (value) {
-                            if (!value!.contains("/")) {
+                            if (!value!.contains("/") || value.isEmpty) {
                               return "Inválid date";
                             } else {
                               return value;
