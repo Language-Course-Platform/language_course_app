@@ -27,7 +27,7 @@ class MyAppWeb extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        routerDelegate: QRouterDelegate(routes.routes),
+        routerDelegate: QRouterDelegate(routes.routes, withWebBar: true),
         routeInformationParser: const QRouteInformationParser(),
         title: 'Ttile to define',
         debugShowCheckedModeBanner: false,

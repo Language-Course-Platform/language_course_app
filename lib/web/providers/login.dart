@@ -12,6 +12,10 @@ class Login extends ChangeNotifier {
   String? errorValue;
   String? get error => errorValue;
 
+  Map<String, dynamic>? toJson() {
+    return {"username": loginInfo, "password": passwordValue};
+  }
+
   void setLoginInfo(String? newValue) {
     loginValue = newValue;
     notifyListeners();

@@ -46,7 +46,7 @@ class _WebAppBarState extends State<WebAppBar> {
                   width: 30,
                 ),
                 InkWell(
-                  onTap: () => QR.to("/"),
+                  onTap: () => QR.to("/learn"),
                   child: const Center(
                     child: Text(
                       "Learn",
@@ -62,7 +62,7 @@ class _WebAppBarState extends State<WebAppBar> {
                   width: 10,
                 ),
                 InkWell(
-                  onTap: () => QR.to("/"),
+                  onTap: () => QR.to("/select"),
                   child: const Center(
                     child: Text(
                       "Talk",
@@ -156,19 +156,23 @@ class _WebAppBarState extends State<WebAppBar> {
                   child: Wrap(
                     runAlignment: WrapAlignment.center,
                     children: [
-                      Icon(
+                      /*  Icon(
                         Icons.attach_money_outlined,
                         color: isCreditHovered != null && isCreditHovered!
                             ? Colors.yellow
                             : Colors.white,
-                      ),
-                      Text(
-                        '0,00',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: isCreditHovered != null && isCreditHovered!
-                              ? Colors.yellow
-                              : Colors.white,
+                      ), */
+                      Image.asset("./assets/coin.png", height: 25, width: 25),
+                      Container(
+                        padding: const EdgeInsets.only(top: 0),
+                        child: Text(
+                          '0,00',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: isCreditHovered != null && isCreditHovered!
+                                ? Colors.yellow
+                                : Colors.white,
+                          ),
                         ),
                       ),
                     ],

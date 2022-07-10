@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/providers/login.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
@@ -22,6 +23,14 @@ class _WebLoginState extends State<WebLogin> {
   bool isObscure = false;
   List<FocusNode>? focusNodeList = List.generate(3, (index) => FocusNode());
   FocusNode focusNode = FocusNode(canRequestFocus: true);
+  AuthController? authController;
+
+  @override
+  void initState() {
+    super.initState();
+    authController = AuthController(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -68,7 +77,7 @@ class _WebLoginState extends State<WebLogin> {
                 children: [
                   Image.asset(
                     isAntiAlias: true,
-                    "./assets/lock-transparent.png",
+                    "./assets/login.png",
                     height: 110,
                     width: 150,
                     fit: BoxFit.cover,
@@ -270,7 +279,7 @@ class _WebLoginState extends State<WebLogin> {
                           ),
                         ),
                         onPressed: () {
-                          QR.to("/home");
+                          authController?.login(loginForm.toJson());
                           focusNodeList?[2].unfocus();
                         },
                       ),

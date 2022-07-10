@@ -14,6 +14,10 @@ class Register extends ChangeNotifier {
   String? errorValue;
   String? get error => errorValue;
 
+  Map<String, dynamic>? toJson() {
+    return {"username": username, "email": email, "password": password};
+  }
+
   void setUsername(String? newValue) {
     usernameValue = newValue;
     notifyListeners();

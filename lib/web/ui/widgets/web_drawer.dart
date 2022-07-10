@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class WebDrawer extends StatefulWidget {
   const WebDrawer({Key? key}) : super(key: key);
@@ -8,6 +9,14 @@ class WebDrawer extends StatefulWidget {
 }
 
 class _WebDrawerState extends State<WebDrawer> {
+  ScrollController? scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController(initialScrollOffset: 0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,6 +27,7 @@ class _WebDrawerState extends State<WebDrawer> {
         children: [
           Flexible(
             child: ListView(
+              controller: scrollController,
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               children: [
@@ -62,22 +72,18 @@ class _WebDrawerState extends State<WebDrawer> {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                  ),
-                  horizontalTitleGap: 0,
-                  title: const Text(
-                    'Edit Profile',
-                    style: TextStyle(
+                    leading: const Icon(
+                      Icons.edit,
                       color: Colors.white,
                     ),
-                  ),
-                  onTap: () {
-                    // Update the state of the app.
-                    // ...
-                  },
-                ),
+                    horizontalTitleGap: 0,
+                    title: const Text(
+                      'Edit Profile',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () => QR.toName("ProfileEdit", params: {})),
                 ListTile(
                   leading: const Icon(
                     Icons.settings_outlined,

@@ -16,7 +16,7 @@ class _WebErrorScreenState extends State<WebErrorScreen> {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       key: globalKey,
-      backgroundColor: const Color(0xff1A1A40),
+      //backgroundColor: const Color(0xff1A1A40),
       endDrawer: const WebDrawer(),
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -26,22 +26,40 @@ class _WebErrorScreenState extends State<WebErrorScreen> {
           globalKey: globalKey,
         ),
       ),
-      body: SizedBox(
+      body: Container(
         height: screenSize.height,
         width: screenSize.width,
+        decoration: const BoxDecoration(
+          //color: Color(0xff1A1A40),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.4, 1],
+            colors: [
+              Color(0xff1a1a40),
+              Colors.teal,
+            ],
+          ),
+        ),
         child: ListView(
           children: [
-            SizedBox(
-              height: screenSize.height,
-              width: screenSize.width,
-              child: const Text(
-                "error",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "./assets/error.png",
+                  height: 500,
+                  width: 500,
                 ),
-              ),
+                const Text(
+                  "Not Found!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
