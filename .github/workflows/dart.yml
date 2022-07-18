@@ -85,7 +85,7 @@ jobs:
           git push origin gh-pages -f
           
       - name: Build android
-      - run: flutter build appbundle 
+        run: flutter build appbundle 
       - uses: actions/upload-artifact@v1
         with:
            name: release-appbundle
