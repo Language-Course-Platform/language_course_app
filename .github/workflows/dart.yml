@@ -59,28 +59,7 @@ jobs:
       #  with:
       #      name: release-apk
       #      path: build/app/outputs/apk/release/app-release.apk
-      - name: Build android
-      - run: flutter build appbundle 
-      #- uses: actions/upload-artifact@v1
-       # with:
-           # name: release-appbundle
-            #path: build/app/outputs/bundle/release/app-release.aab
-
-      - name: Deploy android
-        env:
-         SUPER_SECRET: ${{secrets.GITHUB_TOKEN}}
-        run: |
-          cd build/app/outputs/bundle/release/
-          git init
-          git config --global user.email sinigagliafernando@gmail.com
-          git config --global user.name fernandosini
-          git remote add origin https://fernandosini:$SUPER_SECRET@github.com/fernandosini/language_course_app.git
-          git status
-          git checkout -b app-production
-          git add .
-          git commit -m "update"
-          git push origin app-production -f      
-            
+                
       #- run: flutter build ipa
       #- uses: actions/upload-artifact@v1
       #  with:
@@ -104,3 +83,26 @@ jobs:
           git add .
           git commit -m "update"
           git push origin gh-pages -f
+          
+      - name: Build android
+      - run: flutter build appbundle 
+      - uses: actions/upload-artifact@v1
+        with:
+           name: release-appbundle
+           path: build/app/outputs/bundle/release/app-release.aab
+
+      - name: Deploy android
+        env:
+         SUPER_SECRET: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          cd build/app/outputs/bundle/release/
+          git init
+          git config --global user.email sinigagliafernando@gmail.com
+          git config --global user.name fernandosini
+          git remote add origin https://fernandosini:$SUPER_SECRET@github.com/fernandosini/language_course_app.git
+          git status
+          git checkout -b app-production
+          git add .
+          git commit -m "update"
+          git push origin app-production -f      
+          
