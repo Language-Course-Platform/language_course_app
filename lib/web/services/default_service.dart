@@ -195,8 +195,14 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+import '../environments/staging_environment.dart';
+
 class DefaultService {
   //UserRepository userRepository = UserRepository();
+
+  static var environment = StagingEnvironment();
+
+  static String? envUrl = environment.url;
 
   Future<String?> getToken() async {
     //var user = await userRepository.read();
@@ -293,7 +299,10 @@ class DefaultService {
 
     var response = await http.get(
       Uri.parse(url),
-      headers: {"Accept": "application/json", 'Authorization': 'Bearer $token'},
+      headers: {
+        "Accept": "application/json",
+        'Authorization': 'Bearer $token',
+      },
     );
     return response;
   }

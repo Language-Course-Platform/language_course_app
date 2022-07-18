@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/providers/login.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
@@ -57,9 +58,17 @@ class _WebLoginState extends State<WebLogin> {
         child: ListView(
           //padding: const EdgeInsets.only(top: 40),
           children: [
-            const SizedBox(
-              height: 100,
-            ),
+            if (loginForm.isAuthenticating)
+              Container(
+                alignment: Alignment.center,
+                child: const LoadingIndicator(
+                  indicatorType: Indicator.ballClipRotateMultiple,
+                ),
+              )
+            else
+              const SizedBox(
+                height: 100,
+              ),
             Container(
               margin: EdgeInsets.only(
                   left: WebResponsive.isLargeScreen(context) ? 300 : 150,

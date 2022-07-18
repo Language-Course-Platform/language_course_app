@@ -45,36 +45,31 @@ class _WebLandingState extends State<WebLanding> {
           globalKey: globalKey,
         ),
       ),
-      body: SizedBox(
+      body: Container(
         height: screenSize.height,
         width: screenSize.width,
+        decoration: const BoxDecoration(
+          //color: Color(0xff1A1A40),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.4, 1],
+            colors: [
+              Color(0xff1a1a40),
+              Colors.teal,
+            ],
+          ),
+        ),
         child: ListView(
           padding: const EdgeInsets.only(top: 0),
           children: [
-            Container(
-              height: screenSize.height,
+            SizedBox(
+              height: screenSize.height * 0.9,
               width: screenSize.width,
               //: const EdgeInsets.only(left: 50),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: Image.asset("./assets/avatar.png").image,
-                  fit: BoxFit.cover,
-                ),
-              ),
+
               child: Container(
                 padding: const EdgeInsets.only(left: 50),
-                decoration: const BoxDecoration(
-                  //color: Color(0xff1A1A40),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.4, 1],
-                    colors: [
-                      Color(0xff1a1a40),
-                      Colors.teal,
-                    ],
-                  ),
-                ),
                 child: WebResponsive.isSmallScreen(context)
                     ? SingleChildScrollView(
                         child: Wrap(
@@ -143,7 +138,7 @@ class _WebLandingState extends State<WebLanding> {
                                 height: 500,
                                 width: 500,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )
@@ -151,7 +146,7 @@ class _WebLandingState extends State<WebLanding> {
                         alignment: WrapAlignment.spaceBetween,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             height: screenSize.height,
                             width: WebResponsive.isLargeScreen(context)
                                 ? screenSize.width * 0.5
@@ -225,6 +220,7 @@ class _WebLandingState extends State<WebLanding> {
                       ),
               ),
             ),
+
             /* Container(
               height: screenSize.height,
               width: screenSize.width,
@@ -283,6 +279,21 @@ class _WebLandingState extends State<WebLanding> {
                 ],
               ),
             ), */
+            SizedBox(
+              height: screenSize.height * 0.1,
+              width: screenSize.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
