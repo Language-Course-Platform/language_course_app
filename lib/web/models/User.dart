@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:language_call_app/web/models/languages.dart';
+
 import 'address.dart';
+import 'billing.dart';
 
 class User {
   int? id;
@@ -12,6 +15,9 @@ class User {
   String? avatarUrl;
   double? credits;
   Address? address;
+  Billing? billing;
+  Languages? languages;
+
   User({
     this.id,
     this.firstname,
@@ -22,8 +28,24 @@ class User {
     this.birthday,
     this.credits,
     this.phone,
+    this.billing,
+    this.languages
   });
-  User.fromJson(Map<String, dynamic> json);
+
+  User.fromJson(Map<String, dynamic> json) {
+    if (json["id"] != null) {
+      id = int.tryParse(json["id"]);
+    }
+    if (json["username"] != null) {
+      id = json["username"];
+    }
+    if (json["firstname"] != null) {
+      id = json["firstname"];
+    }
+    if (json["lastname"] != null) {
+      id = json["lastname"];
+    }
+  }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};

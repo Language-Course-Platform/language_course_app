@@ -153,7 +153,7 @@ class WebRoutes {
         ),
       ],
       middleware: [
-        InvalidRouteMiddleware(),
+        // InvalidRouteMiddleware(),
       ],
     ),
     QRoute.withChild(

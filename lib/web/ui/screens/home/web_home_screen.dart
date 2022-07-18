@@ -200,15 +200,16 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
               height: screenSize.height * 0.2,
               width: screenSize.width,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    )
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),

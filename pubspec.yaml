@@ -31,6 +31,10 @@ dependencies:
   flag: ^5.0.1
   flutter:
     sdk: flutter
+ # flag:
+ #   git:
+ #     url: https://github.com/ByJerome/flag_flutter.git
+ #     ref: bug-fixes
   flutter_webrtc: ^0.8.9
   fluttericon: ^2.0.0
   font_awesome_flutter: ^10.1.0
