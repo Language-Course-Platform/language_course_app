@@ -102,7 +102,9 @@ class _WebLoginState extends State<WebLogin> {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(left: 150),
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
                     child: const Text(
                       "Login",
                       style: TextStyle(
@@ -114,7 +116,10 @@ class _WebLoginState extends State<WebLogin> {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
                     child: const Text(
                       "Login in your account to use our services",
                       textAlign: TextAlign.justify,
@@ -127,7 +132,10 @@ class _WebLoginState extends State<WebLogin> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
                     child: TextFormField(
                       style: const TextStyle(color: Colors.white),
                       controller: controllerUsernameOrEmail,
@@ -162,7 +170,10 @@ class _WebLoginState extends State<WebLogin> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
                     child: TextFormField(
                       focusNode: focusNodeList?[1],
                       controller: controllerPassword,
@@ -217,7 +228,10 @@ class _WebLoginState extends State<WebLogin> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 145, right: 150),
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 145,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -275,8 +289,10 @@ class _WebLoginState extends State<WebLogin> {
                   Container(
                     width: screenSize.width,
                     height: 50,
-                    margin:
-                        const EdgeInsets.only(left: 150, right: 150, top: 20),
+                    margin: EdgeInsets.only(
+                        left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                        right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                        top: 20),
                     child: FocusableActionDetector(
                       /*  enabled: true,
                         descendantsAreFocusable: true,
