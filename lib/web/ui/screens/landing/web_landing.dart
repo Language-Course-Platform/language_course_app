@@ -73,7 +73,7 @@ class _WebLandingState extends State<WebLanding> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Container(
-                          height: screenSize.height * 0.7,
+                          height: screenSize.height * 0.77,
                           width: screenSize.width,
                           padding: const EdgeInsets.only(top: 150),
                           child: Column(
@@ -103,7 +103,7 @@ class _WebLandingState extends State<WebLanding> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 50,
+                                height: 25,
                               ),
                               SizedBox(
                                 height: 55,
@@ -128,13 +128,10 @@ class _WebLandingState extends State<WebLanding> {
                             ],
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left:50,right: 50),
-                          child: Image.asset(
-                            "./assets/video_call.png",
-                            height: 500,
-                            width: 500,
-                          ),
+                        Image.asset(
+                          "./assets/video_call.png",
+                          height: 500,
+                          width: 500,
                         ),
                       ],
                     )
@@ -284,10 +281,14 @@ class _WebLandingState extends State<WebLanding> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text(
-                    "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
-                    style: TextStyle(
-                      color: Colors.white,
+                  Expanded(
+                    child: Text(
+                      "© 2022 Fernando Fazio & Lucas Marinho.  All rights reserved",
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 ],
