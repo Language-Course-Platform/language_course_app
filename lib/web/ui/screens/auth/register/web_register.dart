@@ -103,7 +103,9 @@ class _WebRegisterState extends State<WebRegister> {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(top: 10, left: 150),
+                    margin: EdgeInsets.only(
+                        top: 10,
+                        left: WebResponsive.isSmallScreen(context) ? 100 : 150),
                     child: const Text(
                       "Register",
                       style: TextStyle(
@@ -115,10 +117,10 @@ class _WebRegisterState extends State<WebRegister> {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(
+                    margin: EdgeInsets.only(
                       top: 10,
-                      left: 150,
-                      right: 150,
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
                     ),
                     child: const Text(
                       "Create your account to explore our services",
@@ -134,7 +136,10 @@ class _WebRegisterState extends State<WebRegister> {
                     height: 20,
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    margin: EdgeInsets.only(
+                        left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                        right:
+                            WebResponsive.isSmallScreen(context) ? 100 : 150),
                     child: TextFormField(
                       focusNode: focusNodes?[0],
                       style: const TextStyle(color: Colors.white),
@@ -173,7 +178,10 @@ class _WebRegisterState extends State<WebRegister> {
                     height: 20,
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    margin: EdgeInsets.only(
+                        left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                        right:
+                            WebResponsive.isSmallScreen(context) ? 100 : 150),
                     child: TextFormField(
                       style: const TextStyle(color: Colors.white),
                       controller: controllerEmail,
@@ -212,7 +220,10 @@ class _WebRegisterState extends State<WebRegister> {
                     height: 20,
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 150, right: 150),
+                    margin: EdgeInsets.only(
+                        left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                        right:
+                            WebResponsive.isSmallScreen(context) ? 100 : 150),
                     child: TextFormField(
                       controller: controllerPassword,
                       obscureText: !isObscure,
@@ -268,8 +279,11 @@ class _WebRegisterState extends State<WebRegister> {
                     ),
                   ),
                   Container(
-                    margin:
-                        const EdgeInsets.only(left: 145, top: 20, right: 150),
+                    margin: EdgeInsets.only(
+                        left: WebResponsive.isSmallScreen(context) ? 110 : 145,
+                        top: 20,
+                        right:
+                            WebResponsive.isSmallScreen(context) ? 110 : 150),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -339,8 +353,14 @@ class _WebRegisterState extends State<WebRegister> {
                       return Container(
                         width: screenSize.width,
                         height: 50,
-                        margin: const EdgeInsets.only(
-                            left: 150, right: 150, top: 20),
+                        margin: EdgeInsets.only(
+                            left: WebResponsive.isSmallScreen(context)
+                                ? 100
+                                : 150,
+                            right: WebResponsive.isSmallScreen(context)
+                                ? 100
+                                : 150,
+                            top: 20),
                         child: FocusableActionDetector(
                           autofocus: true,
                           child: ElevatedButton(

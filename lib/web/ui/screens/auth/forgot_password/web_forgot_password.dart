@@ -23,7 +23,9 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
         elevation: 0,
         leadingWidth: 250,
         leading: Container(
-          margin: const EdgeInsets.only(left: 20, right: 50),
+          margin: EdgeInsets.only(
+              left: WebResponsive.isSmallScreen(context) ? 10 : 20,
+              right: WebResponsive.isSmallScreen(context) ? 0 : 50),
           child: Material(
             type: MaterialType.transparency,
             child: InkWell(
@@ -85,6 +87,7 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
         ),
         child: ListView(
           //padding: const EdgeInsets.only(top: 40),
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             const SizedBox(
               height: 60,
@@ -102,121 +105,131 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
                         ? 150
                         : 0,
               ),
-              height: screenSize.height * 0.6,
+              height: screenSize.height * 0.75,
               width: screenSize.width,
               /* decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white.withOpacity(0.2),
               ), */
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      alignment: Alignment.topCenter,
-                      child: Image.asset(
-                        isAntiAlias: true,
-                        "./assets/email.png",
-                        height: 125,
-                        width: 150,
-                        scale: 20,
-                        fit: BoxFit.cover,
+
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    alignment: Alignment.topCenter,
+                    child: Image.asset(
+                      isAntiAlias: true,
+                      "./assets/email.png",
+                      height: 125,
+                      width: 150,
+                      scale: 20,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.only(left: 150, right: 150),
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      top: 10,
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
+                    child: const Text(
+                      "Please use your email registered on our platform to recover your password",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 150, right: 150),
-                      child: const Text(
-                        "Please use your email registered on our platform to recover your password",
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white,
-                        ),
-                      ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 150, right: 150),
-                      child: TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        controller: controllerEmail,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelStyle: const TextStyle(color: Colors.white),
-                          labelText: "Email",
-                          prefixIcon: Container(
-                            padding: const EdgeInsets.only(
-                              left: 5,
-                            ),
-                            child: const Icon(
-                              Icons.email,
-                              color: Colors.white,
-                            ),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: controllerEmail,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelStyle: const TextStyle(color: Colors.white),
+                        labelText: "Email",
+                        prefixIcon: Container(
+                          padding: const EdgeInsets.only(
+                            left: 5,
                           ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
+                          child: const Icon(
+                            Icons.email,
+                            color: Colors.white,
                           ),
                         ),
-                        onChanged: (value) => {},
-                        onFieldSubmitted: (value) => focusNode?.requestFocus(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: screenSize.width,
-                      height: 50,
-                      margin:
-                          const EdgeInsets.only(left: 150, right: 150, top: 20),
-                      child: FocusableActionDetector(
-                        child: ElevatedButton(
-                          focusNode: focusNode,
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
                           ),
-                          child: const Text(
-                            "Recover Password",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
                           ),
-                          onPressed: () {
-                            focusNode?.unfocus();
-                          },
                         ),
                       ),
+                      onChanged: (value) => {},
+                      onFieldSubmitted: (value) => focusNode?.requestFocus(),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    )
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    width: screenSize.width,
+                    height: 50,
+                    margin: EdgeInsets.only(
+                      left: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                      right: WebResponsive.isSmallScreen(context) ? 100 : 150,
+                    ),
+                    child: FocusableActionDetector(
+                      child: ElevatedButton(
+                        focusNode: focusNode,
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue,
+                        ),
+                        child: const Text(
+                          "Recover Password",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () {
+                          focusNode?.unfocus();
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  )
+                ],
               ),
             ),
           ],

@@ -27,6 +27,7 @@ class MyAppWeb extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        theme: ThemeData(primaryColor: const Color(0xff1a1a40)),
         routerDelegate: QRouterDelegate(routes.routes, withWebBar: true),
         routeInformationParser: const QRouteInformationParser(),
         title: 'Ttile to define',
