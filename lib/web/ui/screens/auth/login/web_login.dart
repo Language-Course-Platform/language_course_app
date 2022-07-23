@@ -71,16 +71,25 @@ class _WebLoginState extends State<WebLogin> {
               ),
             Container(
               margin: EdgeInsets.only(
-                  left: WebResponsive.isLargeScreen(context) ? 300 : 150,
-                  right: WebResponsive.isLargeScreen(context) ? 300 : 150),
+                left: WebResponsive.isLargeScreen(context)
+                    ? 300
+                    : WebResponsive.isMediumScreen(context)
+                        ? 150
+                        : 0,
+                right: WebResponsive.isLargeScreen(context)
+                    ? 300
+                    : WebResponsive.isMediumScreen(context)
+                        ? 150
+                        : 0,
+              ),
               height: WebResponsive.isLargeScreen(context)
                   ? screenSize.height * 0.67
                   : screenSize.height * 0.73,
               width: screenSize.width,
-              decoration: BoxDecoration(
+              /*   decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white.withOpacity(0.2),
-              ),
+              ), */
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

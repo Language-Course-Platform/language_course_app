@@ -30,7 +30,6 @@ class _WebRegisterState extends State<WebRegister> {
   bool enterIspressed = false;
   List<FocusNode>? focusNodes;
 
-  
   @override
   void initState() {
     super.initState();
@@ -78,16 +77,25 @@ class _WebRegisterState extends State<WebRegister> {
             ),
             Container(
               margin: EdgeInsets.only(
-                  left: WebResponsive.isLargeScreen(context) ? 300 : 150,
-                  right: WebResponsive.isLargeScreen(context) ? 300 : 150),
+                left: WebResponsive.isLargeScreen(context)
+                    ? 300
+                    : WebResponsive.isMediumScreen(context)
+                        ? 150
+                        : 0,
+                right: WebResponsive.isLargeScreen(context)
+                    ? 300
+                    : WebResponsive.isMediumScreen(context)
+                        ? 150
+                        : 0,
+              ),
               height: WebResponsive.isLargeScreen(context)
                   ? screenSize.height * 0.67
                   : screenSize.height * 0.73,
               width: screenSize.width,
-              decoration: BoxDecoration(
+              /*  decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white.withOpacity(0.2),
-              ),
+              ), */
               child: Column(
                 children: [
                   const SizedBox(

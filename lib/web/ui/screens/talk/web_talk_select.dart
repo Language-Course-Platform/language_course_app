@@ -57,7 +57,7 @@ class _WebTalkSelectState extends State<WebTalkSelect> {
               width: screenSize.width,
               child: GridView.extent(
                 shrinkWrap: true,
-                maxCrossAxisExtent: flagList.length.toDouble() ?? 0,
+                maxCrossAxisExtent: flagList.length.toDouble(),
                 crossAxisSpacing: 30,
                 mainAxisSpacing: 30,
                 padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
