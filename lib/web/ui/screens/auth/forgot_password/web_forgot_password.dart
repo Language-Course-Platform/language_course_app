@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_call_app/web/ui/widgets/web_responsive.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
 class WebForgotPassword extends StatefulWidget {
@@ -46,12 +47,15 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
                     const SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      "Back to Login",
-                      style: TextStyle(
-                        color: isArrowBackHovered != null && isArrowBackHovered!
-                            ? Colors.blue
-                            : Colors.white,
+                    Flexible(
+                      child: Text(
+                        "Back to Login",
+                        style: TextStyle(
+                          color:
+                              isArrowBackHovered != null && isArrowBackHovered!
+                                  ? Colors.blue
+                                  : Colors.white,
+                        ),
                       ),
                     )
                   ],
@@ -86,13 +90,24 @@ class _WebForgotPasswordState extends State<WebForgotPassword> {
               height: 60,
             ),
             Container(
-              margin: const EdgeInsets.only(left: 300, right: 300),
+              margin: EdgeInsets.only(
+                left: WebResponsive.isLargeScreen(context)
+                    ? 300
+                    : WebResponsive.isMediumScreen(context)
+                        ? 150
+                        : 0,
+                right: WebResponsive.isLargeScreen(context)
+                    ? 300
+                    : WebResponsive.isMediumScreen(context)
+                        ? 150
+                        : 0,
+              ),
               height: screenSize.height * 0.6,
               width: screenSize.width,
-              decoration: BoxDecoration(
+              /* decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white.withOpacity(0.2),
-              ),
+              ), */
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
