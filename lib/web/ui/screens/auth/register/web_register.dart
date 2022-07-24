@@ -5,6 +5,7 @@ import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/ui/widgets/web_responsive.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
+import 'dart:js' as js;
 
 import '../../../../providers/register.dart';
 
@@ -38,6 +39,13 @@ class _WebRegisterState extends State<WebRegister> {
     authController = AuthController(context: context);
   }
 
+void fixEdgePasswordRevealButton(FocusNode passwordFocusNode) {
+  passwordFocusNode.unfocus();
+  Future.microtask(() {
+    passwordFocusNode.requestFocus();
+    js.context.callMethod("fixPasswordCss", []);
+  });
+}
   @override
   void dispose() {
     super.dispose();
@@ -45,6 +53,7 @@ class _WebRegisterState extends State<WebRegister> {
       element.dispose();
     });
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +156,7 @@ class _WebRegisterState extends State<WebRegister> {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: Colors.white),
-                        labelText: "Username",
+                        labelText: "Username",""
                         prefixIcon: Container(
                           padding: const EdgeInsets.only(
                             left: 5,
@@ -275,7 +284,9 @@ class _WebRegisterState extends State<WebRegister> {
                       onFieldSubmitted: (data) {
                         focusNodes?[3].requestFocus();
                       },
-                      onChanged: (value) => registerForm.setPassword(value),
+                      onChanged: (value) {
+                        registerForm.setPassword(value);
+                      },
                     ),
                   ),
                   Container(
