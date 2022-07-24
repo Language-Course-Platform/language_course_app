@@ -39,13 +39,14 @@ class _WebRegisterState extends State<WebRegister> {
     authController = AuthController(context: context);
   }
 
-void fixEdgePasswordRevealButton(FocusNode passwordFocusNode) {
-  passwordFocusNode.unfocus();
-  Future.microtask(() {
-    passwordFocusNode.requestFocus();
-    js.context.callMethod("fixPasswordCss", []);
-  });
-}
+  void fixEdgePasswordRevealButton(FocusNode passwordFocusNode) {
+    passwordFocusNode.unfocus();
+    Future.microtask(() {
+      passwordFocusNode.requestFocus();
+      js.context.callMethod("fixPasswordCss", []);
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -53,7 +54,6 @@ void fixEdgePasswordRevealButton(FocusNode passwordFocusNode) {
       element.dispose();
     });
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +156,7 @@ void fixEdgePasswordRevealButton(FocusNode passwordFocusNode) {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: Colors.white),
-                        labelText: "Username",""
+                        labelText: "Username",
                         prefixIcon: Container(
                           padding: const EdgeInsets.only(
                             left: 5,
