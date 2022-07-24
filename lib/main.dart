@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:language_call_app/web/providers/forgot.dart';
 import 'package:language_call_app/web/providers/login.dart';
 import 'package:language_call_app/web/providers/register.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,9 @@ class MyAppWeb extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => Register(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Forgot(),
         ),
       ],
       child: MaterialApp.router(
