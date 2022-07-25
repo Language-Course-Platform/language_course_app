@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:js/js_util.dart';
 import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/providers/login.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
-import 'dart:js' as js;
 import '../../../widgets/web_responsive.dart';
 
 class WebLogin extends StatefulWidget {
@@ -29,7 +29,7 @@ class _WebLoginState extends State<WebLogin> {
     passwordFocusNode.unfocus();
     Future.microtask(() {
       passwordFocusNode.requestFocus();
-      js.context.callMethod("fixPasswordCss", []);
+      callMethod(Object, "fixPasswordCss", []);
     });
   }
 
