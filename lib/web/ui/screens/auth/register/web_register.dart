@@ -1,9 +1,8 @@
-// ignore: avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:js/js_util.dart';
 import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/ui/widgets/web_responsive.dart';
+import 'package:language_call_app/web/utils/fix_password_css.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 import '../../../../providers/register.dart';
@@ -284,6 +283,7 @@ class _WebRegisterState extends State<WebRegister> {
                         focusNodes?[3].requestFocus();
                       },
                       onChanged: (value) {
+                        fixEdgePasswordRevealButton(focusNodes![2]);
                         registerForm.setPassword(value);
                       },
                     ),
