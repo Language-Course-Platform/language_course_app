@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:js/js_util.dart';
 import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/providers/login.dart';
+import 'package:language_call_app/web/utils/fix_password_css.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
@@ -29,7 +29,9 @@ class _WebLoginState extends State<WebLogin> {
     passwordFocusNode.unfocus();
     Future.microtask(() {
       passwordFocusNode.requestFocus();
-      callMethod(Object, "fixPasswordCss", []);
+      callMethod(Object,
+        "fixPasswordCss",[]
+      );
     });
   }
 
@@ -229,7 +231,10 @@ class _WebLoginState extends State<WebLogin> {
                           ),
                         ),
                       ),
-                      onChanged: (value) => loginForm.setPassword(value),
+                      onChanged: (value) {
+                        fixEdgePasswordRevealButton(focusNodeList![1]);
+                        loginForm.setPassword(value);
+                      },
                       onFieldSubmitted: (value) =>
                           focusNodeList?[2].requestFocus(),
                     ),
