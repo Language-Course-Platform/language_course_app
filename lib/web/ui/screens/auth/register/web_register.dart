@@ -1,12 +1,11 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:js/js_util.dart';
 import 'package:language_call_app/web/controller/auth_controller.dart';
 import 'package:language_call_app/web/ui/widgets/web_responsive.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
-import 'dart:js' as js;
-
 import '../../../../providers/register.dart';
 
 class WebRegister extends StatefulWidget {
@@ -43,7 +42,7 @@ class _WebRegisterState extends State<WebRegister> {
     passwordFocusNode.unfocus();
     Future.microtask(() {
       passwordFocusNode.requestFocus();
-      js.context.callMethod("fixPasswordCss", []);
+      callMethod(Object, "fixPasswordCss", []);
     });
   }
 
